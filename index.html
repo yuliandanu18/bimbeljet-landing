@@ -27,9 +27,11 @@
     }
     #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     #preloader video {
-      width: 240px; height: 240px;
+      width: 200px; height: 200px;
       border-radius: 50%;
-      object-fit: contain;
+      object-fit: cover;
+      padding: 0;
+      background: transparent;
       box-shadow: 0 8px 40px rgba(15,31,61,0.12);
     }
     .preloader-bar-wrap {
