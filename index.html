@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bimbel JET — Les Privat Kelompok SD & SMP Joglo Jakarta Barat</title>
+  <meta name="description" content="Les privat kelompok SD & SMP di Joglo Jakarta Barat. Kelas kecil, guru terseleksi, laporan progress tiap sesi. Mulai Rp 4 juta/semester." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --jet: #0F1F3D;
+      --jet-mid: #1A3360;
+      --green: #1A3360;
+      --green-light: #EBF0FA;
+      --green-mid: #B3C4E0;
+      --accent: #F0A500;
+      --accent-light: #FEF6E4;
+      --text: #1A1A1A;
+      --text-muted: #4A5A7A;
+      --surface: #F5F7FC;
+      --white: #ffffff;
+      --border: #CFDAEE;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo {
+      font-size: 1.25rem; font-weight: 800; color: var(--jet);
+      text-decoration: none; letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 1.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--text-muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--jet); color: var(--white);
+      padding: 0.5rem 1.25rem; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 600; text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--jet-mid); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--jet);
+      padding: 5rem 1.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,51,96,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -60px; left: 10%;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,165,0,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(240,165,0,0.15); border: 1px solid rgba(240,165,0,0.4);
+      color: #F0C040; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
+      padding: 5px 12px; border-radius: 20px; margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+      color: var(--white); line-height: 1.15; letter-spacing: -1px;
+      margin-bottom: 1.25rem;
+    }
+    h1 em {
+      font-style: normal; color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.0625rem; color: rgba(255,255,255,0.7);
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: var(--jet);
+      padding: 0.85rem 1.75rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      transition: background .2s, transform .15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: #D4920A; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.85rem 1.75rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 600; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+    .hero-right {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .stat-card .num {
+      font-size: 2rem; font-weight: 800; color: var(--white); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-card .num span { color: var(--accent); }
+    .stat-card .lbl { font-size: 0.8125rem; color: rgba(255,255,255,0.55); }
+    .stat-card.accent-card {
+      background: var(--accent); border-color: var(--accent);
+      grid-column: span 2;
+    }
+    .stat-card.accent-card .num { color: var(--jet); }
+    .stat-card.accent-card .lbl { color: rgba(15,31,61,0.7); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800;
+      color: var(--jet); line-height: 1.2; letter-spacing: -0.5px;
+    }
+    .section-desc {
+      font-size: 1.0625rem; color: var(--text-muted);
+      margin-top: 0.75rem; max-width: 560px; line-height: 1.7;
+    }
+
+    /* ── WHY ── */
+    .why { background: var(--surface); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem; margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+    }
+    .why-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.25rem; margin-bottom: 1rem;
+    }
+    .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--jet); margin-bottom: 0.4rem; }
+    .why-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PROGRAMS ── */
+    .programs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 3rem;
+    }
+    .prog-card {
+      border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+      padding: 1.5rem; position: relative; transition: border-color .2s, transform .2s;
+    }
+    .prog-card:hover { border-color: var(--jet-mid); transform: translateY(-3px); }
+    .prog-card.featured {
+      border-color: var(--jet); background: var(--green-light);
+    }
+    .prog-badge {
+      position: absolute; top: -1px; right: 16px;
+      background: var(--accent); color: var(--jet);
+      font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 0 0 8px 8px; letter-spacing: 0.3px;
+    }
+    .prog-level { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem; }
+    .prog-name { font-size: 1.0625rem; font-weight: 800; color: var(--jet); margin-bottom: 0.75rem; }
+    .prog-price {
+      font-size: 1.5rem; font-weight: 800; color: var(--jet);
+      font-variant-numeric: tabular-nums;
+    }
+    .prog-price small { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); }
+    .prog-meta { margin-top: 0.75rem; font-size: 0.8125rem; color: var(--text-muted); }
+    .prog-meta li { list-style: none; padding: 2px 0; display: flex; align-items: center; gap: 6px; }
+    .prog-meta li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+    /* ── HOW ── */
+    .how { background: var(--jet); }
+    .how h2 { color: var(--white); }
+    .how .section-label { color: var(--accent); }
+    .how .section-desc { color: rgba(255,255,255,0.6); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 3rem; position: relative;
+    }
+    .step {
+      text-align: center; padding: 1.5rem 1rem;
+    }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--accent); color: var(--jet);
+      font-size: 1.125rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+    .step p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ── SUBJECTS ── */
+    .subjects-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+    }
+    .subj-tag {
+      background: var(--green-light); border: 1px solid var(--green-mid);
+      color: var(--jet-mid); padding: 6px 14px; border-radius: 20px;
+      font-size: 0.875rem; font-weight: 600;
+    }
+    .subj-tag.highlight { background: var(--jet); color: var(--white); border-color: var(--jet); }
+
+    /* ── INQUIRY CTA ── */
+    .cta-section { background: var(--surface); }
+    .cta-box {
+      background: var(--jet); border-radius: var(--radius-lg);
+      padding: 3rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,125,68,0.3) 0%, transparent 70%);
+    }
+    .cta-box h2 { color: var(--white); margin-bottom: 0.75rem; }
+    .cta-box p { color: rgba(255,255,255,0.65); margin-bottom: 2rem; font-size: 1.0625rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-wa {
+      background: #25D366; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .btn-wa:hover { background: #1DAA55; }
+
+    /* ── LOCATION ── */
+    .location-strip {
+      background: var(--green-light); border-top: 1px solid var(--green-mid);
+      border-bottom: 1px solid var(--green-mid);
+      padding: 1.25rem 1.5rem; text-align: center;
+    }
+    .location-strip p { font-size: 0.9375rem; color: var(--jet-mid); font-weight: 500; }
+    .location-strip strong { color: var(--jet); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--jet); color: rgba(255,255,255,0.5);
+      padding: 2.5rem 1.5rem; text-align: center;
+    }
+    footer .footer-inner { max-width: 1080px; margin: 0 auto; }
+    footer .footer-logo { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+    footer .footer-logo span { color: var(--accent); }    footer p { font-size: 0.8125rem; line-height: 1.7; }
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-links { display: flex; gap: 1.25rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-right { grid-template-columns: 1fr 1fr; }
+      .stat-card.accent-card { grid-column: span 2; }
+      .nav-links { display: none; }
+      .cta-box { padding: 2rem 1.25rem; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Bimbel <span>JET</span></a>
+    <ul class="nav-links">
+      <li><a href="#program">Program</a></li>
+      <li><a href="#mapel">Mata Pelajaran</a></li>
+      <li><a href="#cara-daftar">Cara Daftar</a></li>
+      <li><a href="https://pay.bimbeljet.com/pengajar" target="_blank" rel="noopener">Bergabung Jadi Guru</a></li>
+    </ul>
+    <a href="https://pay.bimbeljet.com/konsultasi" class="nav-cta">Konsultasi Gratis</a>
+  </div>
+</nav>
+
+<!-- LOCATION STRIP -->
+<div class="location-strip">
+  <p>📍 <strong>Joglo, Jakarta Barat</strong> — Les privat kelompok SD & SMP. Dekat dengan Intercon, Srengseng, Kembangan.</p>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Bimbel Privat Kelompok</div>
+      <h1>Belajar Lebih <em>Fokus,</em> Hasil Lebih <em>Nyata</em></h1>
+      <p class="hero-sub">
+        Kelas kecil 2–5 siswa, guru terseleksi, laporan progress setiap sesi.
+        Program reguler semester untuk SD kelas 4–6 dan SMP kelas 7–9.
+      </p>
+      <div class="hero-actions">
+        <a href="https://pay.bimbeljet.com/inquiry" class="btn-primary">
+          Konsultasi Gratis →
+        </a>
+        <a href="#program" class="btn-outline">Lihat Program</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="num">2–5<span>×</span></div>
+        <div class="lbl">Siswa per kelas (privat kelompok)</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">40<span>+</span></div>
+        <div class="lbl">Sesi per semester</div>
+      </div>
+      <div class="stat-card accent-card">
+        <div class="num">Mulai Rp 4 juta <span>/sem</span></div>
+        <div class="lbl">Harga transparan, bisa cicil, bisa mulai kapan saja</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY JET -->
+<section class="why">
+  <div class="container">
+    <p class="section-label">Kenapa Bimbel JET?</p>
+    <h2>Bukan les biasa.<br>Bimbel berbasis data & progress.</h2>
+    <p class="section-desc">Setiap keputusan kelas — dari jadwal sampai guru — dirancang supaya anak kamu berkembang, bukan sekadar datang les.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">👥</div>
+        <h3>Kelas Kecil, Perhatian Penuh</h3>
+        <p>Maksimal 5 siswa per kelas. Guru bisa fokus ke setiap anak, bukan ngomong ke dinding.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h3>Laporan Progress Tiap Sesi</h3>
+        <p>Orang tua tahu perkembangan anak secara real-time. Bukan laporan basa-basi akhir semester.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>Guru Terseleksi & Terlatih</h3>
+        <p>Guru JET diseleksi ketat dan dilatih modul sendiri. Bukan asal rekrut mahasiswa.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📅</div>
+        <h3>Jadwal Fleksibel</h3>
+        <p>Bisa mulai kapan saja. Kelas menyesuaikan jadwal sekolah dan kegiatan anak.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📚</div>
+        <h3>Modul Ajar Terstruktur</h3>
+        <p>Silabus dirancang khusus sesuai kurikulum Merdeka. LOTS → MOTS → HOTS bertahap.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Harga Transparan</h3>
+        <p>Tidak ada biaya tersembunyi. Harga tertera jelas, bisa dicicil, DP 30%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="program">
+  <div class="container">
+    <p class="section-label">Program & Harga</p>
+    <h2>Pilih program yang sesuai kebutuhan</h2>
+    <p class="section-desc">Semua program sudah termasuk modul belajar dan try out berkala. Bisa cicil 2–3 kali pembayaran.</p>
+    <div class="programs-grid">
+      <div class="prog-card">
+        <div class="prog-level">SD</div>
+        <div class="prog-name">Kelas 4 & 5</div>
+        <div class="prog-price">Rp 4.000.000 <small>/semester</small></div>
+        <ul class="prog-meta">
+          <li>40 sesi/semester</li>
+          <li>MTK, IPA, IPS, B.Indo, B.Ing</li>
+          <li>Modul belajar inklusif</li>
+          <li>Try out berkala</li>
+        </ul>
+      </div>
+      <div class="prog-card featured">
+        <div class="prog-badge">Populer</div>
+        <div class="prog-level">SD</div>
+        <div class="prog-name">Kelas 6</div>
+        <div class="prog-price">Rp 4.500.000 <small>/semester</small></div>
+        <ul class="prog-meta">
+          <li>40 sesi/semester</li>
+          <li>Persiapan PPDB SMP</li>
+          <li>Intensif ujian sekolah</li>
+          <li>Pendampingan US tersedia</li>
+        </ul>
+      </div>
+      <div class="prog-card">
+        <div class="prog-level">SMP</div>
+        <div class="prog-name">Kelas 7 & 8</div>
+        <div class="prog-price">Rp 4.250.000 <small>/semester</small></div>
+        <ul class="prog-meta">
+          <li>40–44 sesi/semester</li>
+          <li>MTK, Fisika, Bio, B.Indo, B.Ing</li>
+          <li>Modul belajar inklusif</li>
+          <li>Try out berkala</li>
+        </ul>
+      </div>
+      <div class="prog-card featured">
+        <div class="prog-badge">Populer</div>
+        <div class="prog-level">SMP</div>
+        <div class="prog-name">Kelas 9</div>
+        <div class="prog-price">Rp 4.500.000 <small>/semester</small></div>
+        <ul class="prog-meta">
+          <li>44 sesi/semester</li>
+          <li>Persiapan PPDB SMA</li>
+          <li>Intensif ujian sekolah</li>
+          <li>Pendampingan US tersedia</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.875rem; color:var(--text-muted);">
+      ✦ DP mulai 30% &nbsp;·&nbsp; ✦ Bisa cicil 2–3× &nbsp;·&nbsp; ✦ Add-on konsultasi & semi-private tersedia
+    </p>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="mapel" style="background: var(--surface); padding-top: 3.5rem; padding-bottom: 3.5rem;">
+  <div class="container">
+    <p class="section-label">Mata Pelajaran</p>
+    <h2>Semua mapel yang paling dibutuhkan</h2>
+    <div class="subjects-grid">
+      <span class="subj-tag highlight">Matematika</span>
+      <span class="subj-tag highlight">IPA / Biologi</span>
+      <span class="subj-tag highlight">Fisika</span>
+      <span class="subj-tag">IPS</span>
+      <span class="subj-tag">Bahasa Indonesia</span>
+      <span class="subj-tag">Bahasa Inggris</span>
+      <span class="subj-tag">Persiapan PPDB SMP</span>
+      <span class="subj-tag">Persiapan PPDB SMA</span>
+      <span class="subj-tag">Intensif Ujian Sekolah</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="cara-daftar">
+  <div class="container">
+    <p class="section-label">Cara Daftar</p>
+    <h2>Mulai dalam 3 langkah</h2>
+    <p class="section-desc">Prosesnya simpel. Tidak perlu datang dulu, tidak perlu bayar dulu.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Konsultasi Gratis</h3>
+        <p>Ceritakan kebutuhan anak kamu. Kami bantu pilih program dan jadwal yang tepat.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Terima Penawaran</h3>
+        <p>Kami kirimkan penawaran resmi lengkap dengan harga, jadwal, dan program yang dipilih.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Mulai Belajar</h3>
+        <p>Konfirmasi dan DP. Kelas dimulai sesuai jadwal yang disepakati. Sesederhana itu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Siap mulai? Konsultasi dulu, gratis.</h2>
+      <p>Tidak perlu langsung daftar. Ceritakan kebutuhan anak kamu, kami bantu pilihkan program yang paling cocok.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/6281210382121?text=Halo%2C%20saya%20ingin%20konsultasi%20program%20Bimbel%20JET" class="btn-wa" target="_blank" rel="noopener">
+          Chat via WhatsApp
+        </a>
+        <a href="https://pay.bimbeljet.com/inquiry" class="btn-primary">
+          Form Konsultasi Online →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Bimbel <span>JET</span></div>
+    <p>Les privat kelompok SD & SMP · Joglo, Jakarta Barat</p>
+    <div class="footer-links">
+      <a href="https://pay.bimbeljet.com/kelas">Lihat Program</a>
+      <a href="https://pay.bimbeljet.com/pengajar">Jadi Guru JET</a>
+      <a href="https://pay.bimbeljet.com/daftar-pengajar">Daftar Pengajar</a>
+      <a href="https://pay.bimbeljet.com/inquiry">Konsultasi</a>
+      <a href="https://pay.bimbeljet.com/login">Login Portal</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.75rem;">© 2026 Bimbel JET · Joglo Jakarta Barat · <a href="mailto:admin@bimbeljet.com">admin@bimbeljet.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
