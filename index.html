@@ -13,25 +13,34 @@
     #preloader {
       position: fixed; inset: 0; z-index: 9999;
       background: #ffffff;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(15,31,61,0.035) 18px,
+        rgba(15,31,61,0.035) 19px
+      );
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       gap: 1.5rem;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     #preloader video {
       width: 240px; height: 240px;
-      border-radius: 20px; object-fit: contain;
+      border-radius: 50%;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(15,31,61,0.12);
     }
     .preloader-bar-wrap {
       width: 200px; height: 3px;
-      background: rgba(15,31,61,0.14); border-radius: 10px; overflow: hidden;
+      background: rgba(15,31,61,0.1); border-radius: 10px; overflow: hidden;
     }
     .preloader-bar {
       height: 100%; width: 0%;
       background: linear-gradient(90deg, #1A3360, #F0A500);
       border-radius: 10px;
-      animation: barFill 4.6s ease forwards;
+      animation: barFill 3.2s ease forwards;
     }
     @keyframes barFill {
       0% { width: 0%; } 60% { width: 75%; } 90% { width: 93%; } 100% { width: 100%; }
@@ -39,10 +48,10 @@
     .preloader-text {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px;
-      color: rgba(15,31,61,0.55); text-transform: uppercase;
+      color: rgba(15,31,61,0.45); text-transform: uppercase;
       animation: blink 1.4s ease-in-out infinite;
     }
-    @keyframes blink { 0%,100% { opacity:0.55; } 50% { opacity:0.95; } }
+    @keyframes blink { 0%,100% { opacity:0.45; } 50% { opacity:0.9; } }
 
     /* ── SCROLL REVEAL ── */
     .reveal {
@@ -377,7 +386,7 @@
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <video src="logo-animation.mp4" autoplay muted playsinline loop></video>
+  <video src="logo-animation.mp4" autoplay playsinline loop></video>
   <div class="preloader-bar-wrap">
     <div class="preloader-bar"></div>
   </div>
@@ -394,7 +403,7 @@
       <li><a href="#cara-daftar">Cara Daftar</a></li>
       <li><a href="https://pay.bimbeljet.com/pengajar" target="_blank" rel="noopener">Bergabung Jadi Guru</a></li>
     </ul>
-    <a href="https://pay.bimbeljet.com/konsultasi" class="nav-cta">Konsultasi Gratis</a>
+    <a href="https://pay.bimbeljet.com/inquiry" class="nav-cta">Konsultasi Gratis</a>
   </div>
 </nav>
 
@@ -415,7 +424,7 @@
         Program reguler semester untuk SD kelas 4–6 dan SMP kelas 7–9.
       </p>
       <div class="hero-actions">
-        <a href="https://pay.bimbeljet.com/konsultasi" class="btn-primary">
+        <a href="https://pay.bimbeljet.com/inquiry" class="btn-primary">
           Konsultasi Gratis →
         </a>
         <a href="#program" class="btn-outline">Lihat Program</a>
@@ -594,7 +603,7 @@
         <a href="https://wa.me/6281210382121?text=Halo%2C%20saya%20ingin%20konsultasi%20program%20Bimbel%20JET" class="btn-wa" target="_blank" rel="noopener">
           Chat via WhatsApp
         </a>
-        <a href="https://pay.bimbeljet.com/konsultasi" class="btn-primary">
+        <a href="https://pay.bimbeljet.com/inquiry" class="btn-primary">
           Form Konsultasi Online →
         </a>
       </div>
@@ -611,7 +620,7 @@
       <a href="https://pay.bimbeljet.com/kelas">Lihat Program</a>
       <a href="https://pay.bimbeljet.com/pengajar">Jadi Guru JET</a>
       <a href="https://pay.bimbeljet.com/daftar-pengajar">Daftar Pengajar</a>
-      <a href="https://pay.bimbeljet.com/konsultasi">Konsultasi</a>
+      <a href="https://pay.bimbeljet.com/inquiry">Konsultasi</a>
       <a href="https://pay.bimbeljet.com/login">Login Portal</a>
     </div>
     <p style="margin-top:1rem; font-size:0.75rem;">© 2026 Bimbel JET · Joglo Jakarta Barat · <a href="mailto:admin@bimbeljet.com">admin@bimbeljet.com</a></p>
@@ -623,20 +632,29 @@
 const preloader = document.getElementById('preloader');
 const video = preloader.querySelector('video');
 
+// Aktifkan audio MP4
+video.muted = false;
+video.volume = 0.8;
+
 function hidePreloader() {
   preloader.classList.add('hide');
-  // trigger hero animations
+  // hero animations — langsung, tanpa delay panjang
   document.querySelectorAll('.hero-left > *, .hero-right .stat-card').forEach((el, i) => {
-    el.style.animationDelay = (5.0 + i * 0.15) + 's';
+    el.style.animationDelay = (0.1 + i * 0.1) + 's';
     el.classList.add('hero-anim');
   });
-  // start counter
-  setTimeout(startCounters, 600);
+  setTimeout(startCounters, 300);
 }
 
-// Hide after 5s or when video ends (whichever first)
-setTimeout(hidePreloader, 5000);
-video.addEventListener('ended', () => setTimeout(hidePreloader, 200));
+// Hide setelah 3.5s atau video selesai
+setTimeout(hidePreloader, 3500);
+video.addEventListener('ended', () => hidePreloader());
+
+// Coba autoplay dengan audio, fallback muted
+video.play().catch(() => {
+  video.muted = true;
+  video.play();
+});
 
 // ── PARTICLES ──
 const particlesEl = document.getElementById('particles');
