@@ -9,74 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ── PRELOADER ── */
-    #preloader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: #0F1F3D;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 1.5rem;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-    #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-    #preloader video {
-      width: 240px; height: 240px;
-      border-radius: 20px; object-fit: contain;
-    }
-    .preloader-bar-wrap {
-      width: 200px; height: 3px;
-      background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;
-    }
-    .preloader-bar {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, #1A3360, #F0A500);
-      border-radius: 10px;
-      animation: barFill 4.6s ease forwards;
-    }
-    @keyframes barFill {
-      0% { width: 0%; } 60% { width: 75%; } 90% { width: 93%; } 100% { width: 100%; }
-    }
-    .preloader-text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px;
-      color: rgba(255,255,255,0.35); text-transform: uppercase;
-      animation: blink 1.4s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100% { opacity:0.35; } 50% { opacity:0.85; } }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.16s; }
-    .reveal-delay-3 { transition-delay: 0.24s; }
-    .reveal-delay-4 { transition-delay: 0.32s; }
-    .reveal-delay-5 { transition-delay: 0.40s; }
-    .reveal-delay-6 { transition-delay: 0.48s; }
-
-    /* ── HERO ENTRANCE (setelah preloader) ── */
-    .hero-anim {
-      opacity: 0; transform: translateY(20px);
-      animation: heroIn 0.7s ease forwards;
-    }
-    @keyframes heroIn { to { opacity:1; transform:translateY(0); } }
-
-    /* ── PARTICLES ── */
-    .particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-    .particle {
-      position:absolute; border-radius:50%;
-      animation: floatUp linear infinite;
-    }
-    @keyframes floatUp {
-      0%   { transform: translateY(110%) scale(0.4); opacity:0; }
-      15%  { opacity: 0.6; }
-      85%  { opacity: 0.3; }
-      100% { transform: translateY(-20%) scale(1); opacity:0; }
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -375,15 +307,6 @@
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <video src="assets/logo-animation.mp4" autoplay muted playsinline loop></video>
-  <div class="preloader-bar-wrap">
-    <div class="preloader-bar"></div>
-  </div>
-  <div class="preloader-text">Memuat Bimbel JET...</div>
-</div>
-
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
@@ -394,7 +317,7 @@
       <li><a href="#cara-daftar">Cara Daftar</a></li>
       <li><a href="https://pay.bimbeljet.com/pengajar" target="_blank" rel="noopener">Bergabung Jadi Guru</a></li>
     </ul>
-    <a href="https://pay.bimbeljet.com/inquiry" class="nav-cta">Konsultasi Gratis</a>
+    <a href="https://pay.bimbeljet.com/konsultasi" class="nav-cta">Konsultasi Gratis</a>
   </div>
 </nav>
 
@@ -405,7 +328,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="particles" id="particles"></div>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-badge">Bimbel Privat Kelompok</div>
@@ -445,32 +367,32 @@
     <h2>Bukan les biasa.<br>Bimbel berbasis data & progress.</h2>
     <p class="section-desc">Setiap keputusan kelas — dari jadwal sampai guru — dirancang supaya anak kamu berkembang, bukan sekadar datang les.</p>
     <div class="why-grid">
-      <div class="why-card reveal reveal-delay-1">
+      <div class="why-card">
         <div class="why-icon">👥</div>
         <h3>Kelas Kecil, Perhatian Penuh</h3>
         <p>Maksimal 5 siswa per kelas. Guru bisa fokus ke setiap anak, bukan ngomong ke dinding.</p>
       </div>
-      <div class="why-card reveal reveal-delay-2">
+      <div class="why-card">
         <div class="why-icon">📊</div>
         <h3>Laporan Progress Tiap Sesi</h3>
         <p>Orang tua tahu perkembangan anak secara real-time. Bukan laporan basa-basi akhir semester.</p>
       </div>
-      <div class="why-card reveal reveal-delay-3">
+      <div class="why-card">
         <div class="why-icon">🎯</div>
         <h3>Guru Terseleksi & Terlatih</h3>
         <p>Guru JET diseleksi ketat dan dilatih modul sendiri. Bukan asal rekrut mahasiswa.</p>
       </div>
-      <div class="why-card reveal reveal-delay-4">
+      <div class="why-card">
         <div class="why-icon">📅</div>
         <h3>Jadwal Fleksibel</h3>
         <p>Bisa mulai kapan saja. Kelas menyesuaikan jadwal sekolah dan kegiatan anak.</p>
       </div>
-      <div class="why-card reveal reveal-delay-5">
+      <div class="why-card">
         <div class="why-icon">📚</div>
         <h3>Modul Ajar Terstruktur</h3>
         <p>Silabus dirancang khusus sesuai kurikulum Merdeka. LOTS → MOTS → HOTS bertahap.</p>
       </div>
-      <div class="why-card reveal reveal-delay-6">
+      <div class="why-card">
         <div class="why-icon">💬</div>
         <h3>Harga Transparan</h3>
         <p>Tidak ada biaya tersembunyi. Harga tertera jelas, bisa dicicil, DP 30%.</p>
@@ -486,7 +408,7 @@
     <h2>Pilih program yang sesuai kebutuhan</h2>
     <p class="section-desc">Semua program sudah termasuk modul belajar dan try out berkala. Bisa cicil 2–3 kali pembayaran.</p>
     <div class="programs-grid">
-      <div class="prog-card reveal reveal-delay-1">
+      <div class="prog-card">
         <div class="prog-level">SD</div>
         <div class="prog-name">Kelas 4 & 5</div>
         <div class="prog-price">Rp 4.000.000 <small>/semester</small></div>
@@ -617,94 +539,6 @@
     <p style="margin-top:1rem; font-size:0.75rem;">© 2026 Bimbel JET · Joglo Jakarta Barat · <a href="mailto:admin@bimbeljet.com">admin@bimbeljet.com</a></p>
   </div>
 </footer>
-
-<script>
-// ── PRELOADER ──
-const preloader = document.getElementById('preloader');
-const video = preloader.querySelector('video');
-
-function hidePreloader() {
-  preloader.classList.add('hide');
-  // trigger hero animations
-  document.querySelectorAll('.hero-left > *, .hero-right .stat-card').forEach((el, i) => {
-    el.style.animationDelay = (5.0 + i * 0.15) + 's';
-    el.classList.add('hero-anim');
-  });
-  // start counter
-  setTimeout(startCounters, 600);
-}
-
-// Hide after 5s or when video ends (whichever first)
-setTimeout(hidePreloader, 5000);
-video.addEventListener('ended', () => setTimeout(hidePreloader, 200));
-
-// ── PARTICLES ──
-const particlesEl = document.getElementById('particles');
-function createParticle() {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  const size = Math.random() * 6 + 3;
-  const left = Math.random() * 100;
-  const duration = Math.random() * 12 + 8;
-  const delay = Math.random() * 6;
-  const colors = ['rgba(240,165,0,0.2)', 'rgba(26,51,96,0.4)', 'rgba(255,255,255,0.08)'];
-  p.style.cssText = `
-    width:${size}px; height:${size}px;
-    left:${left}%;
-    bottom: -10px;
-    background: ${colors[Math.floor(Math.random()*colors.length)]};
-    animation-duration: ${duration}s;
-    animation-delay: ${delay}s;
-  `;
-  particlesEl.appendChild(p);
-  setTimeout(() => p.remove(), (duration + delay) * 1000);
-}
-if (particlesEl) {
-  setInterval(createParticle, 600);
-  for (let i = 0; i < 8; i++) createParticle();
-}
-
-// ── SCROLL REVEAL ──
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// ── COUNTER ANIMATION ──
-function animateCounter(el, target, suffix = '', duration = 1800) {
-  let start = 0;
-  const step = (timestamp) => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(ease * target) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
-function startCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  counters.forEach(el => {
-    const target = parseInt(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    animateCounter(el, target, suffix);
-  });
-}
-
-// Add data-count attributes to stat numbers
-document.addEventListener('DOMContentLoaded', () => {
-  const statNums = document.querySelectorAll('.stat-card .num');
-  if (statNums[0]) { statNums[0].innerHTML = '<span data-count="5" data-suffix="×">0×</span>'; }
-  if (statNums[1]) { statNums[1].innerHTML = '<span data-count="40" data-suffix="+">0+</span>'; }
-});
-</script>
 
 </body>
 </html>
